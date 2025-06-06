@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: book-ecommerce
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/book_ecommerce
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
