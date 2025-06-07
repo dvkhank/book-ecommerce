@@ -23,8 +23,6 @@ public class Book {
     @Column(columnDefinition = "text")
     private String description;
 
-    private double price;
-
     private int quantity;
 
     @Column(name = "original_price")
