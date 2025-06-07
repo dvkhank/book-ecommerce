@@ -32,12 +32,12 @@ public class Order {
 
     @ManyToOne (cascade = {CascadeType.PERSIST, CascadeType.MERGE,
     CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn (name = "shipping_method_id")
+    @JoinColumn (name = "shipping_method_id", nullable = false)
     private ShippingMethod shippingMethod;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
     CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn (name = "payment_method_id")
+    @JoinColumn (name = "payment_method_id", nullable = false)
     private PaymentMethod paymentMethod;
 
     @OneToMany(mappedBy = "order", fetch =  FetchType.LAZY, cascade = {CascadeType.PERSIST,
