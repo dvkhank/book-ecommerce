@@ -16,8 +16,7 @@ public class Genre {
 
     private String genreName;
 
-    @ManyToMany (mappedBy = "listGenres", cascade = {CascadeType.DETACH, CascadeType.PERSIST,
-            CascadeType.MERGE, CascadeType.REFRESH,
-    CascadeType.PERSIST})
-    private List<Book> listBooks;
+    @OneToMany(mappedBy = "genre",cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE,
+    CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    private List<BookGenre> listBookGenres;
 }

@@ -37,15 +37,9 @@ public class Book {
 
     private double rating;
 
-    @ManyToMany (fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.REFRESH, CascadeType.DETACH})
-    @JoinTable(
-            name = "book_genre",
-            joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "genre_id")
-    )
-    private List<Genre> listGenres;
+    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.DETACH,
+            CascadeType.MERGE, CascadeType.REFRESH})
+    private List<BookGenre> listBookGenres;
 
     @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = {
             CascadeType.ALL})

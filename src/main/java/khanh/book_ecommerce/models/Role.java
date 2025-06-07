@@ -17,7 +17,7 @@ public class Role {
     @Column(name = "role_name")
     private String roleName;
 
-    @ManyToMany(mappedBy = "listRoles",  fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REFRESH
-    , CascadeType.PERSIST, CascadeType.DETACH})
-    private List<User> listUsers;
+    @OneToMany(mappedBy = "role", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH,
+            CascadeType.MERGE},fetch = FetchType.LAZY)
+    private List<UserRole> listUserRoles;
 }
