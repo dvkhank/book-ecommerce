@@ -33,7 +33,8 @@ public class Book {
     @Column(name = "discounted_price")
     private double discountedPrice;
 
-    private int ISBN;
+    @Column(length = 20)
+    private String ISBN;
 
     private double rating;
 
