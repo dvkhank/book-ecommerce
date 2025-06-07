@@ -33,15 +33,9 @@ public class User {
 
     private boolean sex;
 
-    @ManyToMany (fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.REFRESH, CascadeType.DETACH})
-    @JoinTable(
-            name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private List<Role> listRoles;
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH,
+            CascadeType.MERGE}, fetch = FetchType.LAZY)
+    private List<UserRole> listUserRoles;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE,
     CascadeType.DETACH, CascadeType.REFRESH})
