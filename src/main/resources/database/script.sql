@@ -40,17 +40,17 @@ INSERT INTO genres (genre_name) VALUES
                                     ('Poetry'),
                                     ('Children');
 
-INSERT INTO books (isbn, price, quantity, rating, author, name, description) VALUES
-                                                                                 (9781111111111, 20.5, 10, 4.8, 'Author A', 'Book A', 'Description A'),
-                                                                                 (9782222222222, 15.0, 5, 4.2, 'Author B', 'Book B', 'Description B'),
-                                                                                 (9783333333333, 22.3, 7, 4.5, 'Author C', 'Book C', 'Description C'),
-                                                                                 (9784444444444, 10.9, 3, 4.0, 'Author D', 'Book D', 'Description D'),
-                                                                                 (9785555555555, 18.7, 8, 4.1, 'Author E', 'Book E', 'Description E'),
-                                                                                 (9786666666666, 25.0, 12, 4.9, 'Author F', 'Book F', 'Description F'),
-                                                                                 (9787777777777, 9.5, 4, 3.8, 'Author G', 'Book G', 'Description G'),
-                                                                                 (9788888888888, 13.3, 9, 4.3, 'Author H', 'Book H', 'Description H'),
-                                                                                 (9789999999999, 17.8, 6, 4.7, 'Author I', 'Book I', 'Description I'),
-                                                                                 (9780000000000, 21.0, 15, 4.6, 'Author J', 'Book J', 'Description J');
+INSERT INTO books (isbn, quantity, rating, author, name, description, original_price, discounted_price) VALUES
+                                                                                                            (9781111111111, 10, 4.8, 'Author A', 'Book A', 'Description A', 25.0, 20.5),
+                                                                                                            (9782222222222, 5, 4.2, 'Author B', 'Book B', 'Description B', 18.0, 15.0),
+                                                                                                            (9783333333333, 7, 4.5, 'Author C', 'Book C', 'Description C', 27.0, 22.3),
+                                                                                                            (9784444444444, 3, 4.0, 'Author D', 'Book D', 'Description D', 14.0, 10.9),
+                                                                                                            (9785555555555, 8, 4.1, 'Author E', 'Book E', 'Description E', 22.0, 18.7),
+                                                                                                            (9786666666666, 12, 4.9, 'Author F', 'Book F', 'Description F', 30.0, 25.0),
+                                                                                                            (9787777777777, 4, 3.8, 'Author G', 'Book G', 'Description G', 12.0, 9.5),
+                                                                                                            (9788888888888, 9, 4.3, 'Author H', 'Book H', 'Description H', 16.0, 13.3),
+                                                                                                            (9789999999999, 6, 4.7, 'Author I', 'Book I', 'Description I', 21.0, 17.8),
+                                                                                                            (9780000000000, 15, 4.6, 'Author J', 'Book J', 'Description J', 26.0, 21.0);
 
 INSERT INTO books_genres (book_id, genre_id) VALUES
                                                  (1,1),
