@@ -1,11 +1,9 @@
 package khanh.book_ecommerce.configs;
 
-import aj.org.objectweb.asm.Type;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.metamodel.EntityType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -32,4 +30,5 @@ public class RestConfig implements RepositoryRestConfigurer {
 
 
     }
+
 }
