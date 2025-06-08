@@ -41,4 +41,23 @@ public class ImageController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @PostMapping("/upload-multiple")
+    public ResponseEntity<String> uploadMultipleImage(@RequestParam("file") MultipartFile[] file, @RequestParam("bookId") int bookId) {
+        try {
+            Book book = bookRepository.findById(bookId).get();
+            for (MultipartFile file1 : file) {
+                String imageUrl = imageService.getImageUrlAndSave(file1);
+                Image image = new Image();
+                image.setBook(book);
+                image.setLink(imageUrl);
+                imageRepository.saveAndFlush(image);
+            }
+
+            return ResponseEntity.ok("Da tao nhieu anh thanh cong");
+
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }
