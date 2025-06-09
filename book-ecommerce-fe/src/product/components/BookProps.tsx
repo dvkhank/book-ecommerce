@@ -3,7 +3,7 @@ import Book from "../../models/Book";
 interface BookProps {
   book: Book;
 }
-
+/* eslint-disable jsx-a11y/anchor-is-valid */
 const BookPros: React.FC<BookProps> = ({ book }) => {
   return (
     <div className="col-md-3 mt-2">
