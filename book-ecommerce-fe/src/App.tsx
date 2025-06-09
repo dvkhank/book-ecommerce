@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Navbar from "./components/header-footer/Navbar";
 import Footer from "./components/header-footer/Footer";
-import HomePage from "./homepage/HomePage";
+import HomePage from "./components/homepage/HomePage";
 
 function App() {
   return (

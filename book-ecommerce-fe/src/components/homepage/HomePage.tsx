@@ -1,6 +1,6 @@
+import ListBook from "../../product/ListBook";
 import Banner from "./components/Banner";
 import Carousel from "./components/Carousel";
-import ListBook from "../product/ListBook";
 
 const HomePage = () => {
   return (
