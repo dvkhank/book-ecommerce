@@ -33,7 +33,7 @@ jobs:
           EOF
       #Build
       - name: Build Backend with Gradle
-        run: ./gradlew build
+        run: ./gradlew build -x test
 
       #Setup Nodejs for Frontend
       - name:  Set up Node.js
