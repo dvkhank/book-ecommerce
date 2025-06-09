@@ -17,7 +17,7 @@ const BookPros: React.FC<BookProps> = ({ book }) => {
       setListImages(res.data._embedded.images);
       setLoading(false);
     });
-  }, []);
+  }, [book.id]);
 
   if (loading) {
     return (
