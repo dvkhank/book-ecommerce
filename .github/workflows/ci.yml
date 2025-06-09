@@ -1,0 +1,54 @@
+name: CI for Book Ecommerce
+
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      #Checkout source code
+      - name: Checkout code
+        uses: actions/checkout@v3
+      #Set up Java
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+      #Fake application
+      - name: Create fake appication-secret.yml
+        run: |
+          cat <<EOF > src/main/resources/application-secret.yml
+          cloudinary:
+            clould_name: "fake"
+            api_key: "123456"
+            api_secret: "abcxyz"
+          EOF
+      #Build
+      - name: Build Backend with Gradle
+        run: ./gradlew build
+
+      #Setup Nodejs for Frontend
+      - name:  Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+
+      #Install & build Frontend
+      - name: Install & build React app
+        working-directory: ./book-ecommerce-fe
+        run: |
+          npm install
+          npm run build
+
+
+
+
+
