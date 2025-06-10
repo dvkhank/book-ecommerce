@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import api from "../../api/api";
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 interface NavBarInterface {
   onSearch: (keyword: string) => void;
+  onSelectedGenre: (genreId: number | null) => void;
+}
+interface Genre {
+  id: number;
+  genreName: string;
 }
 const Navbar: React.FC<NavBarInterface> = (props) => {
-  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [genres, setGenres] = useState<Genre[]>();
 
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const handFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     props.onSearch(searchTerm);
@@ -14,6 +21,14 @@ const Navbar: React.FC<NavBarInterface> = (props) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
+
+  useEffect(() => {
+    api
+      .get("/genres")
+      .then((res) => setGenres(res.data._embedded.genres))
+      .catch((error) => console.error(error));
+  }, []);
+
   return (
     <div>
       <nav
@@ -42,11 +57,7 @@ const Navbar: React.FC<NavBarInterface> = (props) => {
                   Home
                 </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Link
-                </a>
-              </li>
+
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
@@ -55,24 +66,20 @@ const Navbar: React.FC<NavBarInterface> = (props) => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Dropdown
+                  Genres
                 </a>
                 <ul className="dropdown-menu">
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Action
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Something else here
-                    </a>
-                  </li>
+                  {genres?.map((g) => (
+                    <li key={g.id} className="nav-item">
+                      <a
+                        onClick={() => props.onSelectedGenre(g.id)}
+                        className="dropdown-item"
+                        href="#"
+                      >
+                        {g.genreName}
+                      </a>
+                    </li>
+                  ))}
                 </ul>
               </li>
             </ul>

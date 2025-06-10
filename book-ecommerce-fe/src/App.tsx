@@ -6,14 +6,17 @@ import { useState } from "react";
 
 function App() {
   const [searchKeyword, setSearchKeyword] = useState<string>("");
-
+  const [selectedGenreId, setSelectedGenreId] = useState<number | null>(null);
   const handleSearch = (keyword: string) => {
     setSearchKeyword(keyword);
   };
   return (
     <div className="App container">
-      <Navbar onSearch={handleSearch} />
-      <HomePage searchKeyword={searchKeyword} />
+      <Navbar onSelectedGenre={setSelectedGenreId} onSearch={handleSearch} />
+      <HomePage
+        selectedGenreId={selectedGenreId}
+        searchKeyword={searchKeyword}
+      />
       <Footer />
     </div>
   );

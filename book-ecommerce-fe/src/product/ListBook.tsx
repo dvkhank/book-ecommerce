@@ -5,6 +5,7 @@ import api from "../api/api";
 import Pagination from "../components/utils/Pagination";
 interface ListBookInterface {
   searchKeyWord: string;
+  selectedGenreId: number | null;
 }
 const ListBook: React.FC<ListBookInterface> = (props) => {
   const [listBooks, setListBooks] = useState<BookModel[]>([]);
@@ -14,8 +15,18 @@ const ListBook: React.FC<ListBookInterface> = (props) => {
 
   useEffect(() => {
     let url: string;
-    if (props.searchKeyWord !== "") {
-      url = `/books/search/findByNameContaining?name=${props.searchKeyWord}&size=8`;
+    const name = props.searchKeyWord.trim();
+    const genreId = props.selectedGenreId;
+    if (name && genreId !== null) {
+      url = `/books/search/findByNameContainingAndGenreId?name=${name}&genreId=${genreId}&page=${
+        current - 1
+      }&size=8`;
+    } else if (name !== "") {
+      url = `/books/search/findByNameContaining?name=${name}&size=8`;
+    } else if (genreId !== null) {
+      url = `/books/search/findByGenreId?genreId=${
+        props.selectedGenreId
+      }&page=${current - 1}&size=8`;
     } else {
       url = `/books?size=8&page=${current - 1}`;
       console.log(url);
@@ -29,7 +40,7 @@ const ListBook: React.FC<ListBookInterface> = (props) => {
         setLoading(false);
       })
       .catch((error) => console.error(error));
-  }, [current, props.searchKeyWord]);
+  }, [current, props.searchKeyWord, props.selectedGenreId]);
 
   const pagination = (current: number) => {
     setCurrent(current);

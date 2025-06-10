@@ -4,13 +4,17 @@ import Carousel from "./components/Carousel";
 
 interface HomePageInterface {
   searchKeyword: string;
+  selectedGenreId: number | null;
 }
 const HomePage: React.FC<HomePageInterface> = (props) => {
   return (
     <div>
       <Banner />
       <Carousel />
-      <ListBook searchKeyWord={props.searchKeyword} />
+      <ListBook
+        selectedGenreId={props.selectedGenreId}
+        searchKeyWord={props.searchKeyword}
+      />
     </div>
   );
 };
