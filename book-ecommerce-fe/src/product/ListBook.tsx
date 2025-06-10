@@ -3,16 +3,25 @@ import BookPros from "./components/BookProps";
 import BookModel from "../models/BookModel";
 import api from "../api/api";
 import Pagination from "../components/utils/Pagination";
-
-const ListBook: React.FC = () => {
+interface ListBookInterface {
+  searchKeyWord: string;
+}
+const ListBook: React.FC<ListBookInterface> = (props) => {
   const [listBooks, setListBooks] = useState<BookModel[]>([]);
   const [loading, setLoading] = useState<Boolean>(true);
   const [current, setCurrent] = useState<number>(1);
   const [total, setTotal] = useState<number>(0);
 
   useEffect(() => {
+    let url: string;
+    if (props.searchKeyWord !== "") {
+      url = `/books/search/findByNameContaining?name=${props.searchKeyWord}&size=8`;
+    } else {
+      url = `/books?size=8&page=${current - 1}`;
+      console.log(url);
+    }
     api
-      .get(`/books?size=8&page=${current - 1}`)
+      .get(url)
       .then((res) => {
         //Because using RestResource _ebedded => books
         setListBooks(res.data._embedded.books);
@@ -20,10 +29,11 @@ const ListBook: React.FC = () => {
         setLoading(false);
       })
       .catch((error) => console.error(error));
-  }, [current]);
+  }, [current, props.searchKeyWord]);
 
   const pagination = (current: number) => {
     setCurrent(current);
+    console.log(current);
   };
 
   if (loading) {

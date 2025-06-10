@@ -3,7 +3,7 @@ import React from "react";
 interface PaginationInterface {
   current: number;
   total: number;
-  pagination: any;
+  pagination: (index: number) => void;
 }
 
 const Pagination: React.FC<PaginationInterface> = (props) => {

@@ -2,12 +2,15 @@ import ListBook from "../../product/ListBook";
 import Banner from "./components/Banner";
 import Carousel from "./components/Carousel";
 
-const HomePage = () => {
+interface HomePageInterface {
+  searchKeyword: string;
+}
+const HomePage: React.FC<HomePageInterface> = (props) => {
   return (
     <div>
       <Banner />
       <Carousel />
-      <ListBook />
+      <ListBook searchKeyWord={props.searchKeyword} />
     </div>
   );
 };

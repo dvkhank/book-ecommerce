@@ -1,5 +1,19 @@
+import { useState } from "react";
+
 /* eslint-disable jsx-a11y/anchor-is-valid */
-const Navbar = () => {
+interface NavBarInterface {
+  onSearch: (keyword: string) => void;
+}
+const Navbar: React.FC<NavBarInterface> = (props) => {
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  const handFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    props.onSearch(searchTerm);
+  };
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
   return (
     <div>
       <nav
@@ -62,12 +76,13 @@ const Navbar = () => {
                 </ul>
               </li>
             </ul>
-            <form className="d-flex" role="search">
+            <form onSubmit={handFormSubmit} className="d-flex" role="search">
               <input
                 className="form-control me-2"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
+                onChange={handleInputChange}
               />
               <button className="btn btn-outline-success" type="submit">
                 Search

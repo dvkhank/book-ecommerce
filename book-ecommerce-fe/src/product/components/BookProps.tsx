@@ -12,7 +12,6 @@ const BookPros: React.FC<BookProps> = ({ book }) => {
 
   useEffect(() => {
     const link = `/books/${book.id}/listImages`;
-    console.log(link);
     api.get(link).then((res) => {
       setListImages(res.data._embedded.images);
       setLoading(false);
