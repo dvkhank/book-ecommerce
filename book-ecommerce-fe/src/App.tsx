@@ -3,6 +3,8 @@ import Navbar from "./components/header-footer/Navbar";
 import Footer from "./components/header-footer/Footer";
 import HomePage from "./components/homepage/HomePage";
 import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import BookDetails from "./product/BookDetails";
 
 function App() {
   const [searchKeyword, setSearchKeyword] = useState<string>("");
@@ -12,12 +14,22 @@ function App() {
   };
   return (
     <div className="App container">
-      <Navbar onSelectedGenre={setSelectedGenreId} onSearch={handleSearch} />
-      <HomePage
-        selectedGenreId={selectedGenreId}
-        searchKeyword={searchKeyword}
-      />
-      <Footer />
+      <BrowserRouter>
+        <Navbar onSelectedGenre={setSelectedGenreId} onSearch={handleSearch} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <HomePage
+                selectedGenreId={selectedGenreId}
+                searchKeyword={searchKeyword}
+              />
+            }
+          />
+          <Route path="/books/:bookId" element={<BookDetails />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }

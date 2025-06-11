@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../../api/api";
+import { NavLink } from "react-router-dom";
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 interface NavBarInterface {
@@ -53,9 +54,13 @@ const Navbar: React.FC<NavBarInterface> = (props) => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <NavLink
+                  className="nav-link active"
+                  aria-current="page"
+                  to={"/"}
+                >
                   Home
-                </a>
+                </NavLink>
               </li>
 
               <li className="nav-item dropdown">
