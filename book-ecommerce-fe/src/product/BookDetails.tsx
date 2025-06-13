@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 import BookModel from "../models/BookModel";
 import api from "../api/api";
 import BookImage from "./BookImage";
+import CommentBook from "./CommentBook";
+import renderRating from "../components/utils/Rating";
+import formatMoney from "../components/utils/FormatMoney";
 
 const BookDetails: React.FC = () => {
   const [book, setBook] = useState<BookModel | null>();
@@ -38,20 +41,20 @@ const BookDetails: React.FC = () => {
     <>
       <div className="row mt-4 mb-4">
         <div className="col-4">
-          <BookImage bookId={book?.id} />
+          <BookImage bookId={bookIdNumber} />
         </div>
         <div className="col-8">
           <div className="row">
             <div className="col-6">
               <h1>{book?.name}</h1>
               <h3>{book?.author}</h3>
+              <h4>{renderRating(book?.rating ?? 0)}</h4>
               <h4>
-                {book?.rating} <i className="fa-solid fa-star"></i>
+                <del>{formatMoney(book?.originalPrice)} đ</del>
               </h4>
-              <h4>
-                <del>{book?.originalPrice}</del>{" "}
+              <h4 className="text-danger">
+                {formatMoney(book?.discountedPrice)} đ
               </h4>
-              <h4>{book?.discountedPrice}</h4>
               <hr />
               <div
                 dangerouslySetInnerHTML={{ __html: book?.description + "" }}
@@ -63,7 +66,9 @@ const BookDetails: React.FC = () => {
         </div>
       </div>
       <div className="row">
-        <div className="col-12">REVIEW</div>
+        <div className="col-12">
+          <CommentBook bookId={bookIdNumber} />
+        </div>
       </div>
     </>
   );

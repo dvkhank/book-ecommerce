@@ -1,9 +1,4 @@
 .price {
-  margin-top: 10px;
-  font-size: 1.1rem;
-  display: flex;
-  gap: 8px;
-  align-items: center;
 }
 .original-price {
   color: #888;

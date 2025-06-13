@@ -3,6 +3,7 @@ import BookModel from "../models/BookModel";
 import api from "../api/api";
 import ImageModel from "../models/ImageModel";
 import { Link } from "react-router-dom";
+import renderRating from "../components/utils/Rating";
 interface BookProps {
   book: BookModel;
 }
@@ -49,18 +50,21 @@ const BookPros: React.FC<BookProps> = ({ book }) => {
           >
             <h5 className="card-title">{book.name}</h5>
             <p className="card-text">{book.author}</p>
-            <div className="price">
-              <span className="original-price">
-                <del>{book.originalPrice}</del>
+            <div className="row">
+              <span className="original-price col-6">
+                <del>{book.originalPrice} đ</del>
               </span>
-              <span className="discounted-price">
-                <strong>{book.discountedPrice}</strong>
+              <span className="discounted-price col-6">
+                <strong>{book.discountedPrice} đ</strong>
               </span>
             </div>
+            <div>{renderRating(book.rating ? book.rating : 0)}</div>
           </Link>
-          <a href="#" className="btn btn-secondary btn-block">
-            <i className="fas fa-shopping-cart"></i>
-          </a>
+          <div className="text-end">
+            <a href="#" className="btn btn-secondary btn-block">
+              <i className="fas fa-shopping-cart"></i>
+            </a>
+          </div>
         </div>
       </div>
     </div>

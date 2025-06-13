@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ImageModel from "../models/ImageModel";
 import api from "../api/api";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
 interface BookImageInterface {
   bookId: number | undefined;
 }
@@ -8,11 +10,6 @@ const BookImage: React.FC<BookImageInterface> = (props) => {
   const bookId: number | undefined = props.bookId;
   const [loading, setLoading] = useState(true);
   const [listImage, setListImage] = useState<ImageModel[]>([]);
-  const [selectedImage, setSelectedImage] = useState<ImageModel | null>();
-
-  const selectImage = (img: ImageModel) => {
-    setSelectedImage(img);
-  };
 
   useEffect(() => {
     api
@@ -25,12 +22,6 @@ const BookImage: React.FC<BookImageInterface> = (props) => {
       .catch((error) => console.error(error));
   }, [bookId]);
 
-  useEffect(() => {
-    if (listImage.length > 0) {
-      setSelectedImage(listImage[0]);
-    }
-  }, [listImage]);
-
   if (loading) {
     return (
       <div className="spinner-border" role="status">
@@ -41,41 +32,14 @@ const BookImage: React.FC<BookImageInterface> = (props) => {
 
   return (
     <div>
-      <div className="mb-3 text-center">
-        <img
-          style={{
-            maxWidth: "100%",
-            height: "300px",
-            objectFit: "cover",
-            borderRadius: "8px",
-          }}
-          src={selectedImage?.link}
-          alt=""
-        />
-      </div>
-      <div>
-        <div className="row">
+      <div className="col-12">
+        <Carousel showArrows={true} showIndicators={true}>
           {listImage.map((image, index) => (
-            <div
-              className="col-3"
-              key={index}
-              onClick={() => {
-                selectImage(image);
-              }}
-            >
-              <img
-                src={image.link}
-                style={{
-                  maxWidth: "100%",
-                  height: "100px",
-                  objectFit: "cover",
-                  borderRadius: "8px",
-                }}
-                alt=""
-              />
+            <div key={index}>
+              <img src={image.link} alt="" style={{ maxWidth: "150px" }} />
             </div>
           ))}
-        </div>
+        </Carousel>
       </div>
     </div>
   );
