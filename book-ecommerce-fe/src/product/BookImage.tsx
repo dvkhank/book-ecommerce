@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ImageModel from "../models/ImageModel";
-import { Carousel } from "react-responsive-carousel";
 import api from "../api/api";
 interface BookImageInterface {
   bookId: number | undefined;
@@ -17,16 +16,20 @@ const BookImage: React.FC<BookImageInterface> = (props) => {
 
   useEffect(() => {
     api
-      .get(`/books/${props.bookId}/listImages`)
+      .get(`/books/${bookId}/listImages`)
       .then((res) => {
         setListImage(res.data._embedded.images);
-        if (listImage.length > 0) {
-          setSelectedImage(listImage[0]);
-        }
+
         setLoading(false);
       })
       .catch((error) => console.error(error));
-  }, [props.bookId]);
+  }, [bookId]);
+
+  useEffect(() => {
+    if (listImage.length > 0) {
+      setSelectedImage(listImage[0]);
+    }
+  }, [listImage]);
 
   if (loading) {
     return (
@@ -47,7 +50,7 @@ const BookImage: React.FC<BookImageInterface> = (props) => {
             borderRadius: "8px",
           }}
           src={selectedImage?.link}
-          alt="haha"
+          alt=""
         />
       </div>
       <div>
@@ -68,6 +71,7 @@ const BookImage: React.FC<BookImageInterface> = (props) => {
                   objectFit: "cover",
                   borderRadius: "8px",
                 }}
+                alt=""
               />
             </div>
           ))}
