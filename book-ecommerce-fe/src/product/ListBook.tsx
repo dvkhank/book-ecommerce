@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import BookPros from "./components/BookProps";
+import BookPros from "./BookProps";
 import BookModel from "../models/BookModel";
 import api from "../api/api";
 import Pagination from "../components/utils/Pagination";

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import BookModel from "../models/BookModel";
 import api from "../api/api";
+import BookImage from "./BookImage";
 
 const BookDetails: React.FC = () => {
   const [book, setBook] = useState<BookModel | null>();
@@ -36,11 +37,14 @@ const BookDetails: React.FC = () => {
   return (
     <>
       <div className="row mt-4 mb-4">
-        <div className="col-4"></div>
+        <div className="col-4">
+          <BookImage bookId={book?.id} />
+        </div>
         <div className="col-8">
           <div className="row">
-            <div className="col-4">
+            <div className="col-6">
               <h1>{book?.name}</h1>
+              <h3>{book?.author}</h3>
               <h4>
                 {book?.rating} <i className="fa-solid fa-star"></i>
               </h4>
@@ -54,7 +58,7 @@ const BookDetails: React.FC = () => {
               ></div>
               <hr />
             </div>
-            <div className="col-8">Cart</div>
+            <div className="col-6">Cart</div>
           </div>
         </div>
       </div>

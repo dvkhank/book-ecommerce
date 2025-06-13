@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import BookModel from "../../models/BookModel";
-import api from "../../api/api";
-import ImageModel from "../../models/ImageModel";
+import BookModel from "../models/BookModel";
+import api from "../api/api";
+import ImageModel from "../models/ImageModel";
 import { Link } from "react-router-dom";
 interface BookProps {
   book: BookModel;
