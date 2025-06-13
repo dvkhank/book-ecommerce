@@ -11,6 +11,17 @@ const BookDetails: React.FC = () => {
   const [book, setBook] = useState<BookModel | null>();
   const [loading, setLoading] = useState(true);
   const { bookId } = useParams();
+  const [quantity, setQuantity] = useState(1);
+
+  const increaseQuantity = () => {
+    const currentQuantity = book && book.quantity ? book.quantity : 0;
+    if (quantity < currentQuantity) setQuantity(quantity + 1);
+  };
+  const decreaseQuantiy = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
   let bookIdNumber = 0;
   try {
     bookIdNumber = parseInt(bookId + "");
@@ -22,6 +33,17 @@ const BookDetails: React.FC = () => {
     console.error(error);
   }
 
+  const handleQuantityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newQuantity = parseInt(event.target.value);
+    const currentQuantity = book && book.quantity ? book.quantity : 0;
+    if (
+      !isNaN(newQuantity) &&
+      newQuantity >= 1 &&
+      newQuantity <= currentQuantity
+    ) {
+      setQuantity(newQuantity);
+    }
+  };
   useEffect(() => {
     api
       .get(`/books/${bookIdNumber}`)
@@ -61,7 +83,47 @@ const BookDetails: React.FC = () => {
               ></div>
               <hr />
             </div>
-            <div className="col-6">Cart</div>
+            <div className="col-6">
+              <div className="mb-2">Quantity</div>
+              <div className="d-flex align-items-center">
+                <button
+                  onClick={decreaseQuantiy}
+                  className="btn btn-outline-secondary me-2"
+                >
+                  -
+                </button>
+                <input
+                  type="number"
+                  min={1}
+                  className="form-control text-center"
+                  value={quantity}
+                  onChange={handleQuantityChange}
+                />
+                <button
+                  onClick={increaseQuantity}
+                  className="btn btn-outline-secondary ms-2"
+                >
+                  +
+                </button>
+              </div>
+              {book?.quantity && (
+                <div className="mt-2 text-center">
+                  Subtotal <br />
+                  <h4>
+                    {formatMoney(quantity * (book.discountedPrice || 0))} đ
+                  </h4>
+                </div>
+              )}
+              <div className="d-grid gap-2">
+                {" "}
+                <button type="button" className="btn btn-danger mt-3">
+                  Buy now
+                </button>
+                <button type="button" className="btn btn-outline-info mt-2">
+                  Add to cart
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

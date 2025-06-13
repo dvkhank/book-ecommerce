@@ -1,4 +1,4 @@
-import { MoonStars, Star, StarFill, Stars } from "react-bootstrap-icons";
+import { StarFill } from "react-bootstrap-icons";
 
 const renderRating = (rate: number) => {
   const stars = [];
