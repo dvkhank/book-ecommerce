@@ -5,6 +5,7 @@ import HomePage from "./components/homepage/HomePage";
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import BookDetails from "./product/BookDetails";
+import Register from "./user/Register";
 
 function App() {
   const [searchKeyword, setSearchKeyword] = useState<string>("");
@@ -26,6 +27,7 @@ function App() {
               />
             }
           />
+          <Route path="/register" element={<Register />} />
           <Route path="/books/:bookId" element={<BookDetails />} />
         </Routes>
         <Footer />
