@@ -117,13 +117,14 @@ const Register = () => {
           password,
           address,
           email,
+          activeCode: "",
+          active: false,
         });
         if (response.status === 200 || response.status === 201) {
-          setAlert("Success");
+          setAlert("Success, please check email");
         } else {
           setAlert("Unexpected status: " + response.status);
         }
-        setAlert("Success");
       } catch (error) {
         setAlert("Error");
         console.log(error);

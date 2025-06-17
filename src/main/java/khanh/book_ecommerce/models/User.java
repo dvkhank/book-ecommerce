@@ -33,8 +33,13 @@ public class User {
 
     private boolean sex;
 
+    private boolean active;
+
+    @Column(name= "active_code")
+    private String activeCode;
+
     @OneToMany(mappedBy = "user", cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH,
-            CascadeType.MERGE}, fetch = FetchType.LAZY)
+            CascadeType.MERGE}, fetch = FetchType.EAGER)
     private List<UserRole> listUserRoles;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE,

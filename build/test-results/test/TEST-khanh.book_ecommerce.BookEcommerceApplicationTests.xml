@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="khanh.book_ecommerce.BookEcommerceApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-06-07T07:09:59.796Z" hostname="Khanh" time="0.456">
+<testsuite name="khanh.book_ecommerce.BookEcommerceApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-06-17T05:37:23.969Z" hostname="Khanh" time="0.311">
   <properties/>
-  <testcase name="contextLoads()" classname="khanh.book_ecommerce.BookEcommerceApplicationTests" time="0.456"/>
-  <system-out><![CDATA[14:09:54.316 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [khanh.book_ecommerce.BookEcommerceApplicationTests]: BookEcommerceApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-14:09:54.450 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration khanh.book_ecommerce.BookEcommerceApplication for test class khanh.book_ecommerce.BookEcommerceApplicationTests
+  <testcase name="contextLoads()" classname="khanh.book_ecommerce.BookEcommerceApplicationTests" time="0.311"/>
+  <system-out><![CDATA[Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
+12:37:19.508 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [khanh.book_ecommerce.BookEcommerceApplicationTests]: BookEcommerceApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+12:37:19.575 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration khanh.book_ecommerce.BookEcommerceApplication for test class khanh.book_ecommerce.BookEcommerceApplicationTests
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -14,29 +15,37 @@
 
  :: Spring Boot ::                (v3.5.0)
 
-2025-06-07T14:09:54.940+07:00  INFO 6975 --- [book-ecommerce] [    Test worker] k.b.BookEcommerceApplicationTests        : Starting BookEcommerceApplicationTests using Java 21.0.2 with PID 6975 (started by khanh in /home/khanh/Coding/book-ecommerce)
-2025-06-07T14:09:54.942+07:00  INFO 6975 --- [book-ecommerce] [    Test worker] k.b.BookEcommerceApplicationTests        : No active profile set, falling back to 1 default profile: "default"
-2025-06-07T14:09:55.697+07:00  INFO 6975 --- [book-ecommerce] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-06-07T14:09:55.784+07:00  INFO 6975 --- [book-ecommerce] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 75 ms. Found 12 JPA repository interfaces.
-2025-06-07T14:09:56.341+07:00  INFO 6975 --- [book-ecommerce] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-06-07T14:09:56.384+07:00  INFO 6975 --- [book-ecommerce] [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.15.Final
-2025-06-07T14:09:56.416+07:00  INFO 6975 --- [book-ecommerce] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-06-07T14:09:56.679+07:00  INFO 6975 --- [book-ecommerce] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-06-07T14:09:56.722+07:00  INFO 6975 --- [book-ecommerce] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-06-07T14:09:57.140+07:00  INFO 6975 --- [book-ecommerce] [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@197d5a87
-2025-06-07T14:09:57.143+07:00  INFO 6975 --- [book-ecommerce] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-06-07T14:09:57.240+07:00  INFO 6975 --- [book-ecommerce] [    Test worker] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2025-06-17T12:37:19.921+07:00  INFO 12862 --- [book-ecommerce] [    Test worker] k.b.BookEcommerceApplicationTests        : Starting BookEcommerceApplicationTests using Java 21.0.2 with PID 12862 (started by khanh in /home/khanh/Coding/book-ecommerce)
+2025-06-17T12:37:19.922+07:00  INFO 12862 --- [book-ecommerce] [    Test worker] k.b.BookEcommerceApplicationTests        : No active profile set, falling back to 1 default profile: "default"
+2025-06-17T12:37:20.470+07:00  INFO 12862 --- [book-ecommerce] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-17T12:37:20.528+07:00  INFO 12862 --- [book-ecommerce] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 52 ms. Found 12 JPA repository interfaces.
+2025-06-17T12:37:20.962+07:00  INFO 12862 --- [book-ecommerce] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-17T12:37:20.998+07:00  INFO 12862 --- [book-ecommerce] [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.15.Final
+2025-06-17T12:37:21.025+07:00  INFO 12862 --- [book-ecommerce] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-06-17T12:37:21.200+07:00  INFO 12862 --- [book-ecommerce] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-17T12:37:21.226+07:00  INFO 12862 --- [book-ecommerce] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-06-17T12:37:21.493+07:00  INFO 12862 --- [book-ecommerce] [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4efed0e0
+2025-06-17T12:37:21.495+07:00  INFO 12862 --- [book-ecommerce] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-06-17T12:37:21.523+07:00  WARN 12862 --- [book-ecommerce] [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-17T12:37:21.524+07:00  WARN 12862 --- [book-ecommerce] [    Test worker] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-06-17T12:37:21.535+07:00  INFO 12862 --- [book-ecommerce] [    Test worker] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
-	Database version: 8.0.39
+	Database version: 8.0
 	Autocommit mode: undefined/unknown
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-06-07T14:09:58.201+07:00  INFO 6975 --- [book-ecommerce] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-06-07T14:09:58.348+07:00  INFO 6975 --- [book-ecommerce] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-06-07T14:09:58.488+07:00  WARN 6975 --- [book-ecommerce] [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-06-07T14:09:59.776+07:00  INFO 6975 --- [book-ecommerce] [    Test worker] k.b.BookEcommerceApplicationTests        : Started BookEcommerceApplicationTests in 5.184 seconds (process running for 6.242)
+2025-06-17T12:37:22.213+07:00  INFO 12862 --- [book-ecommerce] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: alter table users add column active bit not null
+Hibernate: alter table users add column active_code varchar(255)
+2025-06-17T12:37:22.366+07:00  INFO 12862 --- [book-ecommerce] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-17T12:37:22.630+07:00  INFO 12862 --- [book-ecommerce] [    Test worker] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-06-17T12:37:23.201+07:00  WARN 12862 --- [book-ecommerce] [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-17T12:37:23.278+07:00  INFO 12862 --- [book-ecommerce] [    Test worker] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-06-17T12:37:23.278+07:00  WARN 12862 --- [book-ecommerce] [    Test worker] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-06-17T12:37:23.455+07:00  WARN 12862 --- [book-ecommerce] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Multiple @RequestMapping annotations found on public org.springframework.http.ResponseEntity khanh.book_ecommerce.controllers.UserController.registerUser(khanh.book_ecommerce.models.User), but only the first will be used: [@org.springframework.web.bind.annotation.RequestMapping(consumes={}, headers={}, method={}, name="", params={}, path={"/register"}, produces={}, value={"/register"}), @org.springframework.web.bind.annotation.PostMapping(consumes={}, headers={}, name="", params={}, path={}, produces={}, value={})]
+2025-06-17T12:37:23.959+07:00  INFO 12862 --- [book-ecommerce] [    Test worker] k.b.BookEcommerceApplicationTests        : Started BookEcommerceApplicationTests in 4.29 seconds (process running for 5.0)
 ]]></system-out>
   <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
 WARNING: A Java agent has been loaded dynamically (/home/khanh/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.17.5/58f9507f5f28d1d3e7adfb4ec2fe37c29d332c9b/byte-buddy-agent-1.17.5.jar)

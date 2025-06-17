@@ -6,6 +6,7 @@ import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import BookDetails from "./product/BookDetails";
 import Register from "./user/Register";
+import ActiveAccount from "./user/ActiveAccount";
 
 function App() {
   const [searchKeyword, setSearchKeyword] = useState<string>("");
@@ -29,6 +30,7 @@ function App() {
           />
           <Route path="/register" element={<Register />} />
           <Route path="/books/:bookId" element={<BookDetails />} />
+          <Route path="/user/active" element={<ActiveAccount />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>

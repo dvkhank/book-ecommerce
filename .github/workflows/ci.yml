@@ -30,6 +30,18 @@ jobs:
             clould_name: "fake"
             api_key: "123456"
             api_secret: "abcxyz"
+          spring:
+            mail:
+              host: smtp.fake.com
+              port: 587
+              username: "fake@gmail.com"
+              password: "fakepassword"
+              properties:
+                mail:
+                  smtp:
+                    auth: true
+                    starttls:
+                      enable: true
           EOF
       #Build
       - name: Build Backend with Gradle
