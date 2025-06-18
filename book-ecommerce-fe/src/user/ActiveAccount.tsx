@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import api from "../api/api";
+import { NavLink } from "react-router-dom";
 
 const ActiveAccount = () => {
   const [activated, setActivated] = useState(false);
@@ -38,7 +39,7 @@ const ActiveAccount = () => {
           <div className="alert alert-success text-center" role="alert">
             ✅ Your account has been <strong>activated successfully!</strong>
             <br />
-            You can now log in.
+            You can now <NavLink to={"/login"}>log in</NavLink>
           </div>
         ) : error ? (
           <div className="alert alert-danger text-center" role="alert">
