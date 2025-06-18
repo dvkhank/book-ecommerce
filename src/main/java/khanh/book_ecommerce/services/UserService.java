@@ -7,4 +7,5 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 public interface UserService extends UserDetailsService {
     ResponseEntity<?> registerAccount(User user);
     ResponseEntity<?> activateEmail(String activeCode,String email);
+    User findByUsername(String username);
 }

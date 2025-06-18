@@ -3,8 +3,10 @@ package khanh.book_ecommerce.services.servicesimpl;
 import khanh.book_ecommerce.configs.Endpoints;
 import khanh.book_ecommerce.models.Role;
 import khanh.book_ecommerce.models.User;
+import khanh.book_ecommerce.models.UserRole;
 import khanh.book_ecommerce.repositories.RoleRepository;
 import khanh.book_ecommerce.repositories.UserRepository;
+import khanh.book_ecommerce.repositories.UserRoleRepository;
 import khanh.book_ecommerce.services.EmailService;
 import khanh.book_ecommerce.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +31,18 @@ public class UserServiceImpl implements UserService {
 
     private EmailService emailService;
 
+    private UserRoleRepository userRoleRepository;
+
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository,  EmailService emailService) {
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository,  EmailService emailService,
+                           UserRoleRepository userRoleRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.emailService = emailService;
+        this.userRoleRepository = userRoleRepository;
     }
     @Override
     public ResponseEntity<?> registerAccount(User user) {
@@ -50,8 +56,11 @@ public class UserServiceImpl implements UserService {
         user.setActive(false);
         user.setActiveCode(createActiveCode());
         User savedUser = userRepository.save(user);
+        UserRole userRole = new UserRole();
+        userRole.setUser(user);
+        userRole.setRole(roleRepository.findByRoleName("User"));
+        userRoleRepository.save(userRole);
         sendEmail(user.getEmail(),user.getActiveCode());
-        System.out.println("Da gui email");
         return ResponseEntity.ok(savedUser);
     }
 
@@ -118,4 +127,10 @@ public class UserServiceImpl implements UserService {
         }
 
     }
+
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUserName(username);
+    }
+
 }
