@@ -149,5 +149,5 @@ const BookForm: React.FC = () => {
     </div>
   );
 };
-const BookForm_Admin = RequireAdmin(BookForm);
-export default BookForm_Admin;
+const BookFormAdmin = RequireAdmin(BookForm);
+export default BookFormAdmin;

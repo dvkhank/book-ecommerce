@@ -8,9 +8,8 @@ import BookDetails from "./product/BookDetails";
 import Register from "./user/Register";
 import ActiveAccount from "./user/ActiveAccount";
 import Login from "./user/Login";
-import BookForm from "./admin/BookForm";
-import BookForm_Admin from "./admin/BookForm";
 import RequireAuth from "./components/utils/RequireAuth";
+import BookFormAdmin from "./admin/BookForm";
 
 function App() {
   const [searchKeyword, setSearchKeyword] = useState<string>("");
@@ -45,7 +44,7 @@ function App() {
           />
           <Route path="/user/active" element={<ActiveAccount />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/admin/book" element={<BookForm_Admin />} />
+          <Route path="/admin/book" element={<BookFormAdmin />} />
         </Routes>
         <Footer />
       </BrowserRouter>
