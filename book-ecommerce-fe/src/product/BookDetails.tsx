@@ -6,6 +6,7 @@ import BookImage from "./BookImage";
 import CommentBook from "./CommentBook";
 import renderRating from "../components/utils/Rating";
 import formatMoney from "../components/utils/FormatMoney";
+import cookie from "react-cookies";
 
 const BookDetails: React.FC = () => {
   const [book, setBook] = useState<BookModel | null>();
@@ -15,11 +16,11 @@ const BookDetails: React.FC = () => {
 
   const increaseQuantity = () => {
     const currentQuantity = book && book.quantity ? book.quantity : 0;
-    if (quantity < currentQuantity) setQuantity(quantity + 1);
+    setQuantity((prev) => (prev < currentQuantity ? prev + 1 : prev));
   };
   const decreaseQuantiy = () => {
     if (quantity > 1) {
-      setQuantity(quantity - 1);
+      setQuantity((prev) => Math.max(1, prev - 1));
     }
   };
   let bookIdNumber = 0;
@@ -59,6 +60,25 @@ const BookDetails: React.FC = () => {
       </div>
     );
   }
+  const order = (id: number, name: String, discountedPrice: number) => {
+    let cart = cookie.load("cart") || null;
+    if (cart === null) {
+      cart = {};
+    }
+    //Already in cart
+    if (id in cart) {
+      cart[id]["quantity"] += quantity;
+    } else {
+      cart[id] = {
+        id: id,
+        name: name,
+        price: discountedPrice,
+        quantity: quantity,
+      };
+    }
+    cookie.save("cart", cart);
+    alert("Add to cart successfully");
+  };
   return (
     <>
       <div className="row mt-4 mb-4">
@@ -119,7 +139,17 @@ const BookDetails: React.FC = () => {
                 <button type="button" className="btn btn-danger mt-3">
                   Buy now
                 </button>
-                <button type="button" className="btn btn-outline-info mt-2">
+                <button
+                  onClick={() =>
+                    order(
+                      book?.id || 0,
+                      book?.name + "",
+                      book?.discountedPrice || 0
+                    )
+                  }
+                  type="button"
+                  className="btn btn-outline-info mt-2"
+                >
                   Add to cart
                 </button>
               </div>

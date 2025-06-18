@@ -47,7 +47,7 @@ const BookPros: React.FC<BookProps> = ({ book }) => {
       };
     }
     cookie.save("cart", cart);
-    console.log(cart);
+    alert("Add to cart successfully");
   };
   return (
     <div className="col-md-3 mt-2">

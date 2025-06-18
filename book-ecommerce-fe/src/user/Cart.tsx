@@ -42,6 +42,13 @@ const Cart = () => {
     delete newCart[id];
 
     const isEmpty = Object.keys(newCart).length === 0;
+    if (isEmpty) {
+      cookie.remove("cart");
+      setCart(null);
+    } else {
+      cookie.save("cart", newCart);
+      setCart(newCart);
+    }
     setCart(isEmpty ? null : newCart);
   };
   const total = cart

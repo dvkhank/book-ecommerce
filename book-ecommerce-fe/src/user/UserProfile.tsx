@@ -12,7 +12,7 @@ const UserProfile: React.FC<Props> = ({ user, orders }) => {
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate("/login"); // hoặc "/" nếu bạn muốn về trang chủ
+    navigate("/login");
   };
   return (
     <div className="container mt-4">
