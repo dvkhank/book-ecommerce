@@ -1,5 +1,6 @@
 package khanh.book_ecommerce.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -38,16 +39,20 @@ public class Book {
 
     @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.DETACH,
             CascadeType.MERGE, CascadeType.REFRESH})
+    @JsonIgnore
     private List<BookGenre> listBookGenres;
 
     @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = {
             CascadeType.ALL})
+    @JsonIgnore
     private List<Image> listImages;
 
     @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JsonIgnore
     private List<Comment> listComments;
 
     @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JsonIgnore
     private List<OrderDetail> listOrderDetails;
 
 }

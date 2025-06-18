@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../api/api";
 import { NavLink } from "react-router-dom";
+import cookie from "react-cookies";
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 interface NavBarInterface {
@@ -29,6 +30,7 @@ const Navbar: React.FC<NavBarInterface> = (props) => {
       .then((res) => setGenres(res.data._embedded.genres))
       .catch((error) => console.error(error));
   }, []);
+  const cart = cookie.load("cart");
 
   return (
     <div>
@@ -37,9 +39,9 @@ const Navbar: React.FC<NavBarInterface> = (props) => {
         className="navbar navbar-expand-lg"
       >
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <NavLink className="navbar-brand" to={"/"}>
             Book Ecommerce
-          </a>
+          </NavLink>
           <button
             className="navbar-toggler"
             type="button"
@@ -102,16 +104,21 @@ const Navbar: React.FC<NavBarInterface> = (props) => {
             </form>
             <ul className="navbar-nav me-1">
               <li className="nav-item">
-                <a className="nav-link">
-                  <i className="fas fa-shopping-cart"></i>{" "}
-                </a>
+                <NavLink to={"/cart"} className="nav-link">
+                  <i className="fas fa-shopping-cart"></i>
+                  {cart && (
+                    <span className="badge bg-danger ms-1">
+                      {Object.keys(cart).length}
+                    </span>
+                  )}
+                </NavLink>
               </li>
             </ul>
             <ul className="navbar-nav me-1">
               <li className="nav-item">
-                <a className="nav-link">
+                <NavLink to={"/info"} className="nav-link">
                   <i className="fa-solid fa-user"></i>{" "}
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>

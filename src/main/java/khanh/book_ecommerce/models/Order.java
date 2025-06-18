@@ -1,5 +1,6 @@
 package khanh.book_ecommerce.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -40,6 +41,7 @@ public class Order {
     @JoinColumn (name = "payment_method_id", nullable = false)
     private PaymentMethod paymentMethod;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "order", fetch =  FetchType.LAZY, cascade = {CascadeType.PERSIST,
             CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     private List<OrderDetail> orderDetails;

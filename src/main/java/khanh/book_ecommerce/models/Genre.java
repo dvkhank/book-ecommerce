@@ -1,5 +1,6 @@
 package khanh.book_ecommerce.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,5 +19,6 @@ public class Genre {
 
     @OneToMany(mappedBy = "genre",cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE,
     CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<BookGenre> listBookGenres;
 }

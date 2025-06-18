@@ -1,5 +1,6 @@
 package khanh.book_ecommerce.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -40,12 +41,15 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH,
             CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<UserRole> listUserRoles;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE,
     CascadeType.DETACH, CascadeType.REFRESH})
+    @JsonIgnore
     private List<Order> listOrders;
 
+    @JsonIgnore
     @OneToMany (mappedBy = "user",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Comment> listComments;
 

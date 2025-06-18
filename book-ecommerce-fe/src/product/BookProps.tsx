@@ -4,6 +4,8 @@ import api from "../api/api";
 import ImageModel from "../models/ImageModel";
 import { Link } from "react-router-dom";
 import renderRating from "../components/utils/Rating";
+import cookie from "react-cookies";
+
 interface BookProps {
   book: BookModel;
 }
@@ -27,6 +29,26 @@ const BookPros: React.FC<BookProps> = ({ book }) => {
       </div>
     );
   }
+
+  const order = (id: number, name: String, discountedPrice: number) => {
+    let cart = cookie.load("cart") || null;
+    if (cart === null) {
+      cart = {};
+    }
+    //Already in cart
+    if (id in cart) {
+      cart[id]["quantity"]++;
+    } else {
+      cart[id] = {
+        id: id,
+        name: name,
+        price: discountedPrice,
+        quantity: 1,
+      };
+    }
+    cookie.save("cart", cart);
+    console.log(cart);
+  };
   return (
     <div className="col-md-3 mt-2">
       <div className="card">
@@ -61,9 +83,14 @@ const BookPros: React.FC<BookProps> = ({ book }) => {
             <div>{renderRating(book.rating ? book.rating : 0)}</div>
           </Link>
           <div className="text-end">
-            <a href="#" className="btn btn-secondary btn-block">
+            <button
+              onClick={() =>
+                order(book.id, book.name + "", book.discountedPrice || 0)
+              }
+              className="btn btn-secondary btn-block"
+            >
               <i className="fas fa-shopping-cart"></i>
-            </a>
+            </button>
           </div>
         </div>
       </div>

@@ -10,6 +10,9 @@ import ActiveAccount from "./user/ActiveAccount";
 import Login from "./user/Login";
 import RequireAuth from "./components/utils/RequireAuth";
 import BookFormAdmin from "./admin/BookForm";
+import Cart from "./user/Cart";
+import UserInfo from "./user/UserInfo";
+import OrderDetails from "./user/OrderDetails";
 
 function App() {
   const [searchKeyword, setSearchKeyword] = useState<string>("");
@@ -45,6 +48,9 @@ function App() {
           <Route path="/user/active" element={<ActiveAccount />} />
           <Route path="/login" element={<Login />} />
           <Route path="/admin/book" element={<BookFormAdmin />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/info" element={<UserInfo />} />
+          <Route path="orders/:id" element={<OrderDetails />} />
         </Routes>
         <Footer />
       </BrowserRouter>

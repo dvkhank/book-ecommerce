@@ -7,7 +7,9 @@ public class Endpoints {
             "/users/search/existsByUserName",
             "/users/search/existsByEmail",
             "/user/active",
-            "/genres"
+            "/genres",
+            "/user/info",
+            "/user/order-info/**"
     };
 
 

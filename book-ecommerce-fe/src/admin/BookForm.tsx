@@ -141,7 +141,6 @@ const BookForm: React.FC = () => {
             }
           />
         </div>
-
         <button type="submit" className="btn btn-primary">
           Thêm sách
         </button>
