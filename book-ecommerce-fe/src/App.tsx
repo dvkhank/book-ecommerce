@@ -13,6 +13,7 @@ import BookFormAdmin from "./admin/BookForm";
 import Cart from "./user/Cart";
 import UserInfo from "./user/UserInfo";
 import OrderDetails from "./user/OrderDetails";
+import PaymentResult from "./user/Payment";
 
 function App() {
   const [searchKeyword, setSearchKeyword] = useState<string>("");
@@ -37,6 +38,7 @@ function App() {
             }
           />
           <Route path="/register" element={<Register />} />
+          <Route path="/payment/return" element={<PaymentResult />} />
           <Route
             path="/books/:bookId"
             element={

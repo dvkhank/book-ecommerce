@@ -106,7 +106,7 @@ public class UserController {
 
     @GetMapping
     @RequestMapping("/order-info/{id}")
-    public ResponseEntity<?> getOrder(@RequestHeader("Authorization") String authHeader, @PathVariable int id) {
+    public ResponseEntity<?> getOrder(@RequestHeader("Authorization") String authHeader, @PathVariable long id) {
         String token = authHeader.substring(7);
         String username = jwtService.extractUsername(token);
         UserDetails userDetails = userService.loadUserByUsername(username);

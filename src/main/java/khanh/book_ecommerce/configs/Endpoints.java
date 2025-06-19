@@ -9,13 +9,20 @@ public class Endpoints {
             "/user/active",
             "/genres",
             "/user/info",
-            "/user/order-info/**"
+            "/user/order-info/**",
+            "/payment/**",
+            "/payment",
+            "/payment/ipn",
+
     };
 
 
     public static final String[] PUBLIC_POST_ENDPOINTS = {
             "/user/register",
             "/user/login",
+            "/payment/**",
+            "/payment/ipn",
+            "/payment"
     };
     public static final String[] ADMIN_GET_ENDPOINTS = {
            "/users",
@@ -26,4 +33,5 @@ public class Endpoints {
             "/books"
     };
     public static final String FE_HOST = "http://localhost:3000";
+    public static final String BE_HOST = "http://localhost:8080";
 }

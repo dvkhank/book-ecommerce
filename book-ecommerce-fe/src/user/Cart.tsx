@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import cookie from "react-cookies";
+import { CreateOrderRequest } from "../models/CreateOrderRequest";
+import api from "../api/api";
 
 type CartItem = {
   id: number;
@@ -17,6 +19,30 @@ const Cart = () => {
     (cookie.load("cart") as CartMap) || null
   );
 
+  const payload: CreateOrderRequest = {
+    address: "123 Main Road",
+    userId: 2,
+    shippingMethodId: 1,
+    paymentMethodId: 11,
+    orderDetails: cart
+      ? Object.values(cart).map((item) => ({
+          bookId: item.id,
+          quantity: item.quantity,
+          price: item.price,
+        }))
+      : [],
+  };
+  const handleVnPay = async () => {
+    try {
+      const res = await api.post("/payment", payload);
+      const redirectUrl = res.data;
+      console.log(res.data);
+      window.location.href = redirectUrl;
+    } catch (err) {
+      console.error("Lỗi khi tạo thanh toán:", err);
+      alert("Không thể tạo thanh toán");
+    }
+  };
   const handleIncrease = (id: number) => {
     const newCart = { ...cart };
     newCart[id].quantity += 1;
@@ -117,6 +143,13 @@ const Cart = () => {
                 Tổng tiền:{" "}
                 <span className="text-danger">{total.toLocaleString()}đ</span>
               </p>
+              <button
+                onClick={handleVnPay}
+                type="button"
+                className="btn btn-danger mt-3"
+              >
+                Buy now
+              </button>{" "}
             </div>
           </>
         )}

@@ -7,12 +7,37 @@ import CommentBook from "./CommentBook";
 import renderRating from "../components/utils/Rating";
 import formatMoney from "../components/utils/FormatMoney";
 import cookie from "react-cookies";
+import { CreateOrderRequest } from "../models/CreateOrderRequest";
 
 const BookDetails: React.FC = () => {
   const [book, setBook] = useState<BookModel | null>();
   const [loading, setLoading] = useState(true);
   const { bookId } = useParams();
   const [quantity, setQuantity] = useState(1);
+  const payload: CreateOrderRequest = {
+    address: "123 Main Road",
+    userId: 2,
+    shippingMethodId: 1,
+    paymentMethodId: 11,
+    orderDetails: [
+      {
+        bookId: book?.id || 0,
+        quantity: quantity,
+        price: book?.discountedPrice || 0,
+      },
+    ],
+  };
+  const handleVnPay = async () => {
+    try {
+      const res = await api.post("/payment", payload);
+      const redirectUrl = res.data;
+      console.log(res.data);
+      window.location.href = redirectUrl;
+    } catch (err) {
+      console.error("Lỗi khi tạo thanh toán:", err);
+      alert("Không thể tạo thanh toán");
+    }
+  };
 
   const increaseQuantity = () => {
     const currentQuantity = book && book.quantity ? book.quantity : 0;
@@ -136,7 +161,11 @@ const BookDetails: React.FC = () => {
               )}
               <div className="d-grid gap-2">
                 {" "}
-                <button type="button" className="btn btn-danger mt-3">
+                <button
+                  onClick={handleVnPay}
+                  type="button"
+                  className="btn btn-danger mt-3"
+                >
                   Buy now
                 </button>
                 <button
