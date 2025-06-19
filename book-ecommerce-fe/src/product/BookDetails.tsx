@@ -14,9 +14,13 @@ const BookDetails: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const { bookId } = useParams();
   const [quantity, setQuantity] = useState(1);
+
+  const userStr = localStorage.getItem("user");
+  const user = userStr ? JSON.parse(userStr) : null;
+  console.log(user);
   const payload: CreateOrderRequest = {
     address: "123 Main Road",
-    userId: 2,
+    userId: user.id,
     shippingMethodId: 1,
     paymentMethodId: 11,
     orderDetails: [

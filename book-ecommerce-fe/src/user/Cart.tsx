@@ -19,9 +19,12 @@ const Cart = () => {
     (cookie.load("cart") as CartMap) || null
   );
 
+  const userStr = localStorage.getItem("user");
+  const user = userStr ? JSON.parse(userStr) : null;
+
   const payload: CreateOrderRequest = {
     address: "123 Main Road",
-    userId: 2,
+    userId: user.id,
     shippingMethodId: 1,
     paymentMethodId: 11,
     orderDetails: cart

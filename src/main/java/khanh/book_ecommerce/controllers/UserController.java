@@ -1,10 +1,11 @@
 package khanh.book_ecommerce.controllers;
 
+import khanh.book_ecommerce.DTO.UserDTO;
 import khanh.book_ecommerce.configs.Endpoints;
 import khanh.book_ecommerce.models.Order;
 import khanh.book_ecommerce.models.OrderDetail;
 import khanh.book_ecommerce.models.User;
-import khanh.book_ecommerce.security.JwtResponse;
+import khanh.book_ecommerce.security.LoginResponse;
 import khanh.book_ecommerce.security.LoginRequest;
 import khanh.book_ecommerce.services.JwtService;
 import khanh.book_ecommerce.services.OrderService;
@@ -66,7 +67,9 @@ public class UserController {
             );
             if(authentication.isAuthenticated()) {
                 final String jwt = jwtService.generateToken(loginRequest.getUsername());
-                return ResponseEntity.ok(new JwtResponse(jwt));
+                User user = userService.findByUsername(loginRequest.getUsername());
+                UserDTO userDTO = new UserDTO(user);
+                return ResponseEntity.ok(new LoginResponse(jwt, userDTO));
             }
         }
         catch (AuthenticationException e) {

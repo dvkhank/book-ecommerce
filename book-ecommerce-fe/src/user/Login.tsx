@@ -18,8 +18,9 @@ const Login = () => {
     api
       .post("/user/login", loginRequest)
       .then((res) => {
-        const { jwt } = res.data;
+        const { jwt, user } = res.data;
         localStorage.setItem("token", jwt);
+        localStorage.setItem("user", JSON.stringify(user));
         setAlert("Login successfully");
         const decodedToken = jwtDecode(jwt) as { isAdmin: boolean };
         if (decodedToken.isAdmin) {
